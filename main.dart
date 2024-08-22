@@ -35,9 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(
           'IT@WU Shop',
-          style: TextStyle(color: Colors.white), // Updated text color to black
+          style: TextStyle(color: Colors.white), 
         ),
-        backgroundColor: Colors.blue, // Updated background color to white
+        backgroundColor: Colors.blue, 
       ),
       body: FutureBuilder<List<Product>>(
         future: futureProducts,
@@ -103,8 +103,8 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Detail'),
-        backgroundColor: Colors.white, // Updated background color to white
-        iconTheme: IconThemeData(color: Colors.black), // Updated icon color to black
+        backgroundColor: Colors.white, 
+        iconTheme: IconThemeData(color: Colors.black), 
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -126,7 +126,7 @@ class DetailsScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black, // Updated text color to black
+                  color: Colors.black, 
                 ),
               ),
               SizedBox(height: 5),
@@ -147,17 +147,17 @@ class DetailsScreen extends StatelessWidget {
               ),
               Text(
                 product.category,
-                style: TextStyle(fontSize: 18.0, color: Colors.black), // Updated text color to black
+                style: TextStyle(fontSize: 18.0, color: Colors.black), 
               ),
               SizedBox(height: 10),
               Text(product.description),
               SizedBox(height: 10),
               Text(
-                'Rating : ${product.rating} / 5 of ${product.count}', // Updated format
+                'Rating : ${product.rating} / 5 of ${product.count}', 
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black, // Updated text color to black
+                  color: Colors.black,
                 ),
               ),
               RatingBar.builder(
