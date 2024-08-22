@@ -93,18 +93,31 @@ class ProductList extends StatelessWidget {
   }
 }
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends StatefulWidget {
   final Product product;
 
   DetailsScreen({required this.product});
+
+  @override
+  _DetailsScreenState createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+  late double currentRating;
+
+  @override
+  void initState() {
+    super.initState();
+    currentRating = widget.product.rating;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Detail'),
-        backgroundColor: Colors.white, 
-        iconTheme: IconThemeData(color: Colors.black), 
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -116,22 +129,22 @@ class DetailsScreen extends StatelessWidget {
                 height: 200, 
                 width: double.infinity,
                 child: Image.network(
-                  product.image,
+                  widget.product.image,
                   fit: BoxFit.contain,
                 ),
               ),
               SizedBox(height: 10),
               Text(
-                product.title,
+                widget.product.title,
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black, 
+                  color: Colors.black,
                 ),
               ),
               SizedBox(height: 5),
               Text(
-                '\$${product.price}',
+                '\$${widget.product.price}',
                 style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.black,
@@ -146,14 +159,14 @@ class DetailsScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                product.category,
-                style: TextStyle(fontSize: 18.0, color: Colors.black), 
+                widget.product.category,
+                style: TextStyle(fontSize: 18.0, color: Colors.black),
               ),
               SizedBox(height: 10),
-              Text(product.description),
+              Text(widget.product.description),
               SizedBox(height: 10),
               Text(
-                'Rating : ${product.rating} / 5 of ${product.count}', 
+                'Rating : $currentRating / 5 of ${widget.product.count}',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -161,7 +174,7 @@ class DetailsScreen extends StatelessWidget {
                 ),
               ),
               RatingBar.builder(
-                initialRating: product.rating,
+                initialRating: currentRating,
                 minRating: 1,
                 direction: Axis.horizontal,
                 allowHalfRating: true,
@@ -171,6 +184,9 @@ class DetailsScreen extends StatelessWidget {
                   color: Colors.amber,
                 ),
                 onRatingUpdate: (rating) {
+                  setState(() {
+                    currentRating = rating;
+                  });
                   print(rating);
                 },
               ),
